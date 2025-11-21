@@ -69,3 +69,35 @@ export interface AudioContextType {
   fadeOut: () => void;
 }
 
+export type GameCategory = "favorite" | "rotation";
+
+export interface Game {
+  id: string;
+  title: string;
+  subtitle?: string;
+  coverImage: string;
+  category: GameCategory;
+  playTime?: string;
+  lastPlayed?: string;
+  achievements?: {
+    unlocked: number;
+    total: number;
+  };
+  tags?: string[];
+}
+
+export interface GameCardProps {
+  game: Game;
+  index: number;
+  variant?: "scroll" | "grid";
+  onHover?: (gameId: string) => void;
+}
+
+export interface GameSectionProps {
+  title: string;
+  description?: string;
+  games: Game[];
+  maxDisplay?: number;
+  showAddButton?: boolean;
+}
+

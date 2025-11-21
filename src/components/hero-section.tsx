@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import type { HeroContent, ProfileContent, SocialCollection } from "@/data/profile";
 import { ProfileCard } from "./profile-card";
 import { SocialLinks } from "./social-links";
@@ -13,12 +13,16 @@ type HeroSectionProps = {
   socials: SocialCollection;
 };
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 },
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+      delay: 0.15,
+    },
   },
 };
 
@@ -40,7 +44,10 @@ export function HeroSection({ hero, profile, socials }: HeroSectionProps) {
           <motion.div
             initial={{ opacity: 0, y: 45 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+              duration: 0.9,
+              ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+            }}
             className="space-y-5 text-balance"
           >
             <h1 className="text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-6xl">
@@ -56,7 +63,11 @@ export function HeroSection({ hero, profile, socials }: HeroSectionProps) {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.4,
+                  ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+                }}
                 className="rounded-3xl border border-white/10 bg-black/30 p-6 backdrop-blur-xl"
               >
                 <p className="text-sm uppercase tracking-[0.35em] text-white/60">Snapshot</p>

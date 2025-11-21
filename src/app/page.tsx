@@ -1,5 +1,5 @@
 import { HeroSection } from "@/components/hero-section";
-import { PerformanceHighlights } from "@/components/performance-highlights";
+import { GameProfile } from "@/components/game-profile";
 import { profileData } from "@/data/profile";
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
         profile={profileData.profile}
         socials={profileData.socials}
       />
-      <PerformanceHighlights items={profileData.performance} />
+      <GameProfile />
     </main>
   );
 }
