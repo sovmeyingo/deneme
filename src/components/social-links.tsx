@@ -52,7 +52,7 @@ export function SocialLinks({ links }: SocialLinksProps) {
       variants={listVariants}
       initial="hidden"
       animate="visible"
-      className="grid gap-3 md:grid-cols-2"
+      className="grid w-full gap-3 md:grid-cols-2"
     >
       {links.map((social) => {
         const Icon = iconMap[social.platform] ?? Link2;
@@ -73,7 +73,7 @@ export function SocialLinks({ links }: SocialLinksProps) {
               backgroundColor,
               boxShadow: `0 20px 45px ${glowColor}`,
             }}
-            className="group flex items-center justify-between rounded-2xl border px-5 py-4 backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-white/80 hover:bg-white/10"
+            className="group flex w-full items-center justify-between rounded-2xl border px-5 py-4 backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-white/80 hover:bg-white/10"
           >
             <div>
               <p className="text-xs uppercase tracking-[0.35em] text-white/80">{social.label}</p>

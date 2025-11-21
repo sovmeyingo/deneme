@@ -9,6 +9,7 @@
 body {
   min-height: 100vh;
   background-color: var(--background);
+  overflow-x: hidden;
   color: var(--foreground);
   font-family: var(--font-geist-sans, "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
   background-image:
@@ -39,6 +40,12 @@ body {
 
   video {
     display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    background-image: linear-gradient(145deg, #050109, #090914 60%, #02010a);
   }
 }
 

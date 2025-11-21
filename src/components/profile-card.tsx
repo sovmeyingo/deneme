@@ -103,7 +103,7 @@ export function ProfileCard({ profile }: ProfileCardProps) {
         ))}
       </div>
 
-      <div className="grid gap-6 rounded-3xl border border-white/10 bg-black/20 p-6 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 rounded-3xl border border-white/10 bg-black/20 p-6 sm:grid-cols-3">
         {profile.stats.map((stat) => (
           <div key={`${stat.label}-${stat.value}`} className="text-center sm:text-left">
             <p className="text-2xl font-semibold text-white">{stat.value}</p>

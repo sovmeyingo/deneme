@@ -58,8 +58,10 @@ export function HeroSection({ hero, profile, socials }: HeroSectionProps) {
           </motion.div>
 
           <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-            <ProfileCard profile={profile} />
-            <div className="flex flex-col gap-6">
+            <div className="min-w-0">
+              <ProfileCard profile={profile} />
+            </div>
+            <div className="flex flex-col gap-6 min-w-0">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}

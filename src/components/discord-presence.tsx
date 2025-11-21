@@ -138,7 +138,7 @@ export function DiscordPresence() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-3xl border border-white/15 bg-white/5 p-5 text-white shadow-[0_20px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl"
+      className="w-full rounded-3xl border border-white/15 bg-white/5 p-5 text-white shadow-[0_20px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl"
     >
       <div className="mb-4 flex items-start gap-3">
         <div className="relative">
