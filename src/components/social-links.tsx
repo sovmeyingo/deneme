@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import {
   type LucideIcon,
   Disc,
@@ -26,7 +26,7 @@ const iconMap: Record<SocialLink["platform"], LucideIcon> = {
   link: Link2,
 };
 
-const listVariants = {
+const listVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -36,9 +36,16 @@ const listVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 25 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.215, 0.61, 0.355, 1] } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number],
+    },
+  },
 };
 
 type SocialLinksProps = {
