@@ -22,7 +22,7 @@ export function GameCard({ game, index, variant = "scroll" }: GameCardProps) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: index * 0.05 }}
       whileHover={{ scale: 1.04, y: -8 }}
-      className={`group relative flex-shrink-0 cursor-pointer ${variant === "scroll" ? "w-40" : "w-full"}`}
+      className={`group relative z-10 flex-shrink-0 cursor-pointer ${variant === "scroll" ? "w-40" : "w-full"}`}
     >
       <div
         className={`relative overflow-hidden rounded-2xl bg-[#10121a] ${cardHeight}`}

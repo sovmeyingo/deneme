@@ -3,12 +3,9 @@
 import { motion, type Variants } from "framer-motion";
 import {
   type LucideIcon,
-  Disc,
-  Github,
   Instagram,
   Link2,
-  Mail,
-  Music4,
+  MousePointer2,
   Twitter,
   Youtube,
 } from "lucide-react";
@@ -16,13 +13,10 @@ import type { SocialCollection, SocialLink } from "@/data/profile";
 import { cn } from "@/lib/utils";
 
 const iconMap: Record<SocialLink["platform"], LucideIcon> = {
-  github: Github,
   x: Twitter,
   instagram: Instagram,
   youtube: Youtube,
-  tiktok: Music4,
-  discord: Disc,
-  email: Mail,
+  steam: MousePointer2,
   link: Link2,
 };
 

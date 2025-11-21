@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import type { ProfileContent } from "@/data/profile";
@@ -22,6 +23,22 @@ const cardVariants: Variants = {
 };
 
 export function ProfileCard({ profile }: ProfileCardProps) {
+  const [istanbulTime, setIstanbulTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const formatter = new Intl.DateTimeFormat("tr-TR", {
+        timeZone: "Europe/Istanbul",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+      setIstanbulTime(formatter.format(new Date()));
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <motion.section
       initial="hidden"
@@ -65,7 +82,9 @@ export function ProfileCard({ profile }: ProfileCardProps) {
             </p>
             <h1 className="text-4xl font-semibold text-white md:text-5xl">{profile.name}</h1>
             <p className="text-lg text-zinc-200">{profile.role}</p>
-            <p className="text-sm font-medium text-emerald-300">{profile.availability}</p>
+            <p className="text-sm font-medium text-emerald-300">
+              {istanbulTime ? `İstanbul saati ${istanbulTime}` : "İstanbul saati yükleniyor..."}
+            </p>
           </div>
         </div>
       </div>
@@ -86,11 +105,13 @@ export function ProfileCard({ profile }: ProfileCardProps) {
 
       <div className="grid gap-6 rounded-3xl border border-white/10 bg-black/20 p-6 sm:grid-cols-3">
         {profile.stats.map((stat) => (
-          <div key={stat.label} className="text-center sm:text-left">
-            <p className="text-3xl font-semibold text-white">{stat.value}</p>
-            <p className="text-sm uppercase tracking-[0.35em] text-zinc-500">
-              {stat.label}
-            </p>
+          <div key={`${stat.label}-${stat.value}`} className="text-center sm:text-left">
+            <p className="text-xl font-semibold text-white">{stat.value}</p>
+            {stat.label && (
+              <p className="text-sm uppercase tracking-[0.35em] text-zinc-500">
+                {stat.label}
+              </p>
+            )}
           </div>
         ))}
       </div>

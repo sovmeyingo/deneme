@@ -32,14 +32,14 @@ export function HeroSection({ hero, profile, socials }: HeroSectionProps) {
       <div className="relative isolate overflow-hidden rounded-[40px] border border-white/5 bg-black/40 shadow-[0_0_80px_rgba(59,7,100,0.35)]">
         <VideoBackground src="/media/hero-loop.mp4" className="rounded-[40px]" />
         <div className="relative z-10 flex flex-col gap-10 p-6 text-white sm:p-10">
-          <motion.p
+          <motion.div
             variants={fadeUp}
             initial="hidden"
             animate="visible"
             className="text-xs font-semibold uppercase tracking-[0.7em] text-white/60"
           >
             {hero.badge}
-          </motion.p>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 45 }}
@@ -70,9 +70,9 @@ export function HeroSection({ hero, profile, socials }: HeroSectionProps) {
                 }}
                 className="rounded-3xl border border-white/10 bg-black/30 p-6 backdrop-blur-xl"
               >
-                <p className="text-sm uppercase tracking-[0.35em] text-white/60">Snapshot</p>
+                <p className="text-sm uppercase tracking-[0.35em] text-white/60">Belirsiz alan</p>
                 <p className="mt-3 text-xl text-white/90">
-                  Kartvizit deneyimini video, buton ve animasyon destekli tek sayfada topluyorum.
+                  Burasını neden yaptım bende bilmiyorum
                 </p>
               </motion.div>
               <SocialLinks links={socials} />

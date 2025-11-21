@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { FAVORITE_GAMES, ROTATION_GAMES } from "@/lib/game-data";
 import { GameCard } from "./game-card";
-import { AddGameWidget } from "./add-game-widget";
 
 export function GameProfile() {
   return (
@@ -15,10 +14,8 @@ export function GameProfile() {
         className="mb-10"
       >
         <p className="text-[11px] uppercase tracking-[0.35em] text-white/50">Discord Game ID</p>
-        <h2 className="mt-2 text-3xl font-semibold text-white">Oyun vitrinim</h2>
-        <p className="mt-2 text-sm text-white/60">
-          Dönüşümlü oyunlar ve en çok paylaştığım favoris serileri tek bakışta.
-        </p>
+        <h2 className="mt-2 text-3xl font-semibold text-white">Oyun vitrinim - Bakımda</h2>
+        <p className="mt-2 text-sm text-white/60">Sevdiğim tüm oyunlar</p>
       </motion.div>
 
       <motion.section
@@ -41,7 +38,6 @@ export function GameProfile() {
           {ROTATION_GAMES.map((game, index) => (
             <GameCard key={game.id} game={game} index={index} variant="scroll" />
           ))}
-          <AddGameWidget category="rotation" />
         </div>
       </motion.section>
 
@@ -63,7 +59,6 @@ export function GameProfile() {
           {FAVORITE_GAMES.map((game, index) => (
             <GameCard key={game.id} game={game} index={index} variant="grid" />
           ))}
-          <AddGameWidget category="favorite" />
         </div>
       </motion.section>
     </section>

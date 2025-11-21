@@ -111,19 +111,30 @@ export function DiscordPresence() {
     return <ErrorState message={error ?? "Veri yüklenemedi"} />;
   }
 
-  const activity = presence.activities.find((act) => act.type !== 4);
+  const activity = presence.activities.find(
+    (act) =>
+      act.type !== 4 &&
+      act.type !== 2 &&
+      act.name &&
+      typeof act.type === "number" &&
+      act.type >= 0,
+  );
+
+  const spotifyActive = Boolean(
+    presence.listening_to_spotify && presence.spotify && !activity,
+  );
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-3xl border border-white/20 bg-white/5 p-6 text-white shadow-[0_30px_120px_rgba(15,23,42,0.45)] backdrop-blur-2xl"
+      className="rounded-3xl border border-white/15 bg-white/5 p-5 text-white shadow-[0_20px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl"
     >
-      <div className="mb-6 flex items-start gap-4">
+      <div className="mb-4 flex items-start gap-3">
         <div className="relative">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="relative h-20 w-20 overflow-hidden rounded-2xl ring-4 ring-white/10"
+            className="relative h-16 w-16 overflow-hidden rounded-2xl ring-2 ring-white/10"
           >
             <Image
               src={avatarUrl}
@@ -135,23 +146,23 @@ export function DiscordPresence() {
             />
           </motion.div>
           <span
-            className={`absolute bottom-1 right-1 h-5 w-5 rounded-full border-4 border-slate-900 ${statusConfig.color} ${
+            className={`absolute bottom-0 right-0 h-4 w-4 rounded-full border-4 border-slate-900 ${statusConfig.color} ${
               statusConfig.pulse ? "animate-pulse" : ""
             }`}
           />
         </div>
         <div className="flex-1">
           <p className="text-xs uppercase tracking-[0.35em] text-white/60">Discord</p>
-          <h3 className="text-2xl font-semibold">{presence.discord_user.display_name}</h3>
-          <p className="text-sm text-white/70">@{presence.discord_user.username}</p>
-          <div className="mt-3 flex items-center gap-2 text-xs text-white/70">
+          <h3 className="text-xl font-semibold">{presence.discord_user.display_name}</h3>
+          <p className="text-xs text-white/70">@{presence.discord_user.username}</p>
+          <div className="mt-2 flex items-center gap-2 text-[11px] text-white/70">
             <span className={`inline-block h-2 w-2 rounded-full ${statusConfig.color}`} />
             {statusConfig.label}
           </div>
         </div>
       </div>
 
-      <div className="mb-5 flex flex-wrap gap-2">
+      <div className="mb-4 flex flex-wrap gap-2 text-xs">
         {activePlatforms.length > 0 ? (
           activePlatforms.map((platform) => (
             <PlatformBadge key={platform.label} icon={platform.icon} label={platform.label} />
@@ -161,18 +172,18 @@ export function DiscordPresence() {
         )}
       </div>
 
+      <AnimatePresence>{spotifyActive && presence.spotify && <SpotifyWidget spotify={presence.spotify} />}</AnimatePresence>
+
       <AnimatePresence>
-        {presence.listening_to_spotify && presence.spotify && (
-          <SpotifyWidget spotify={presence.spotify} />
+        {activity && (
+          <div className="mt-4">
+            <ActivityCard activities={[activity]} />
+          </div>
         )}
       </AnimatePresence>
 
-      <AnimatePresence>
-        {activity && <ActivityCard activities={[activity]} />}
-      </AnimatePresence>
-
-      {!presence.listening_to_spotify && !activity && (
-        <div className="py-6 text-center text-sm text-white/50">
+      {!spotifyActive && !activity && (
+        <div className="py-4 text-center text-sm text-white/50">
           Şu anda paylaşılan bir aktivite yok
         </div>
       )}

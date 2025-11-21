@@ -37,25 +37,25 @@ export function ActivityCard({ activities }: ActivityCardProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="rounded-2xl border border-purple-500/30 bg-gradient-to-br from-purple-500/15 to-blue-500/10 p-4 backdrop-blur-md"
+      className="rounded-2xl border border-purple-500/25 bg-gradient-to-br from-purple-500/10 to-blue-500/5 p-3 text-sm backdrop-blur-md"
     >
       <div className="mb-3 flex items-center gap-2">
         <span className="text-xs font-semibold uppercase tracking-wide text-purple-300">
           {getActivityTypeName(activity.type)}
         </span>
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-3">
         {largeImage && (
-          <div className="relative h-16 w-16 overflow-hidden rounded-xl">
-            <Image src={largeImage} alt={activity.name} fill className="object-cover" sizes="64px" />
+          <div className="relative h-12 w-12 overflow-hidden rounded-lg">
+            <Image src={largeImage} alt={activity.name} fill className="object-cover" sizes="48px" />
           </div>
         )}
         <div className="flex-1">
-          <h4 className="text-base font-semibold text-white">{activity.name}</h4>
-          {activity.details && <p className="text-sm text-white/70">{activity.details}</p>}
-          {activity.state && <p className="text-xs text-white/50">{activity.state}</p>}
+          <h4 className="text-sm font-semibold text-white">{activity.name}</h4>
+          {activity.details && <p className="text-xs text-white/70">{activity.details}</p>}
+          {activity.state && <p className="text-[11px] text-white/50">{activity.state}</p>}
           {activity.timestamps?.start && (
-            <p className="mt-2 text-xs text-white/40">{elapsed} geçti</p>
+            <p className="mt-1 text-[11px] text-white/40">{elapsed} geçti</p>
           )}
         </div>
       </div>

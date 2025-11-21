@@ -106,16 +106,17 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     audio.volume = initialVolumeRef.current;
     audioRef.current = audio;
 
-    const savedPref = localStorage.getItem(AUDIO_CONFIG.STORAGE_KEY);
-    const shouldPlay = savedPref === null ? true : savedPref === "true";
-
-    const handleFirstInteraction = () => {
-      if (shouldPlay && !isPlayingRef.current) {
-        fadeInRef.current();
-      }
+    const cleanupListeners = () => {
       document.removeEventListener("click", handleFirstInteraction);
       document.removeEventListener("keydown", handleFirstInteraction);
       document.removeEventListener("touchstart", handleFirstInteraction);
+    };
+
+    const handleFirstInteraction = () => {
+      if (!isPlayingRef.current) {
+        fadeInRef.current();
+      }
+      cleanupListeners();
     };
 
     document.addEventListener("click", handleFirstInteraction);
@@ -126,9 +127,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       audio.pause();
       audio.src = "";
       audioRef.current = null;
-      document.removeEventListener("click", handleFirstInteraction);
-      document.removeEventListener("keydown", handleFirstInteraction);
-      document.removeEventListener("touchstart", handleFirstInteraction);
+      cleanupListeners();
     };
   }, []); 
 

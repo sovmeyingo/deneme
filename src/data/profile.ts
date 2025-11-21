@@ -15,13 +15,10 @@ export type PerformanceMetric = {
 };
 
 export type SocialPlatform =
-  | "github"
   | "x"
   | "instagram"
   | "youtube"
-  | "tiktok"
-  | "discord"
-  | "email"
+  | "steam"
   | "link";
 
 export type SocialLink = {
@@ -34,12 +31,10 @@ export type SocialLink = {
 
 export const profileData = {
   hero: {
-    badge: "Creative Developer & Storyteller",
-    headline: "Selim Kaya",
-    subline:
-      "Kurumsal ürünlerden viral kişisel projelere uzanan deneyimle dijital kimliğini büyütmeyi seviyorum.",
-    summary:
-      "Kişisel markalar, içerik yaratıcıları ve sanat kolektifleri için yüksek performanslı tek sayfa deneyimleri tasarlarım.",
+    badge: "Oyun oynayan rastgele birisi",
+    headline: "Jva",
+    subline: "Bir bakıma Jva",
+    summary: "Sayfama hoş geldin",
   },
   profile: {
     avatar: "/media/avatar.jpg",
@@ -47,29 +42,29 @@ export const profileData = {
       src: "/media/profile-banner.jpg",
       alt: "Yumuşak gradientli profil banner arka planı",
     },
-    name: "Selim Kaya",
-    role: "Full-stack Developer · Creative Technologist",
-    location: "İstanbul, Türkiye",
-    availability: "Aralık 2025 itibarıyla 2 boşluk",
+    name: "Jva",
+    role: "Full-stack oyuncu",
+    location: "Antartika, Kutuplar",
+    availability: "",
     highlights: [
       {
         label: "Son Proje",
-        description: "guns.lol tabanlı 120K görüntülenme alan micro-site ağı",
+        description: "Fortnitede üst üste 5 win",
       },
       {
         label: "Öne Çıkan",
-        description: "Card.co tarzı 8 saniyelik başvuru akışı",
+        description: "Last of us'u 6 kere bitirmek",
       },
     ] as Highlight[],
     stats: [
-      { label: "Tamamlanan site", value: "86" },
-      { label: "Ortalama teslim", value: "4 gün" },
-      { label: "Retention", value: "%78" },
+      { label: "", value: "89000 saat Fortnite" },
+      { label: "", value: "10 Saat oyun oynamak" },
+      { label: "", value: "%100 full-stack Last of Us fanı" },
     ] as SpotlightStat[],
     ctas: {
       primary: {
         label: "Direkt İletişim",
-        href: "mailto:hey@selim.studio",
+        href: "mailto:hey@jva.studio",
       },
       secondary: {
         label: "Kısa Demo İzle",
@@ -101,53 +96,32 @@ export const profileData = {
   ] as PerformanceMetric[],
   socials: [
     {
-      platform: "github",
-      label: "GitHub",
-      handle: "@selimkaya",
-      url: "https://github.com/selimkaya",
-      accent: "#a855f7",
-    },
-    {
       platform: "x",
       label: "X / Twitter",
-      handle: "@selim.codes",
-      url: "https://x.com/selim",
+      handle: "Korkuyorum",
+      url: "https://x.com/VioraziStore",
       accent: "#0ea5e9",
     },
     {
       platform: "instagram",
       label: "Instagram",
-      handle: "@selim.visuals",
-      url: "https://instagram.com/selim.visuals",
+      handle: "qiironth",
+      url: "https://instagram.com/qiironth",
       accent: "#f43f5e",
     },
     {
       platform: "youtube",
       label: "YouTube",
-      handle: "selim studio",
-      url: "https://youtube.com/@selimstudio",
+      handle: "@walkoftheearths",
+      url: "https://www.youtube.com/@walkoftheearths",
       accent: "#ef4444",
     },
     {
-      platform: "tiktok",
-      label: "TikTok",
-      handle: "@selimplays",
-      url: "https://www.tiktok.com/@selimplays",
-      accent: "#14b8a6",
-    },
-    {
-      platform: "discord",
-      label: "Discord",
-      handle: "club/selimlabs",
-      url: "https://discord.gg/selimlabs",
-      accent: "#6366f1",
-    },
-    {
-      platform: "email",
-      label: "E-posta",
-      handle: "hey@selim.studio",
-      url: "mailto:hey@selim.studio",
-      accent: "#facc15",
+      platform: "steam",
+      label: "Steam",
+      handle: "Njól",
+      url: "https://steamcommunity.com/id/checkits/",
+      accent: "#66c0f4",
     },
   ] as SocialLink[],
 } as const;

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AudioProvider } from "@/contexts/AudioContext";
@@ -15,33 +15,36 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://selim.studio"),
-  title: "Selim Kaya — Kişisel Profil",
+  metadataBase: new URL("https://jva.studio"),
+  title: "Jva — Kişisel Profil",
   description:
     "Card.co ve guns.lol esintileriyle hazırlanmış, videolu modern kişisel profil kartı.",
   openGraph: {
-    title: "Selim Kaya — Kişisel Profil",
+    title: "Jva — Kişisel Profil",
     description:
       "Videolu hero, Framer Motion animasyonlar ve tip güvenli içerikle tek sayfa profil deneyimi.",
-    url: "https://selim.studio",
+    url: "https://jva.studio",
     type: "website",
     images: [
       {
         url: "/media/avatar.svg",
         width: 1200,
         height: 630,
-        alt: "Selim Kaya Profil Önizlemesi",
+        alt: "Jva Profil Önizlemesi",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@selim.codes",
-    title: "Selim Kaya — Kişisel Profil",
+    creator: "@jva",
+    title: "Jva — Kişisel Profil",
     description:
       "Video arkaplanı ve performans optimizasyonlarıyla tasarlanmış kişisel link hub.",
     images: ["/media/avatar.svg"],
   },
+};
+
+export const viewport: Viewport = {
   themeColor: "#05010a",
 };
 
