@@ -24,7 +24,7 @@ export function GameProfile() {
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.1, margin: "-100px 0px" }}
         className="mb-12 space-y-4 rounded-3xl border border-white/5 bg-white/5 p-6 shadow-[0_30px_120px_rgba(59,7,100,0.25)] backdrop-blur-2xl"
       >
         <header className="flex flex-wrap items-center justify-between gap-2">
@@ -44,8 +44,8 @@ export function GameProfile() {
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        className="space-y-4 rounded-3xl border border-white/5 bg-white/5 p-6 shadow-[0_30px_120px_rgba(59,7,100,0.25)] backdrop-blur-2xl"
+        viewport={{ once: true, amount: 0.1, margin: "-100px 0px" }}
+        className="mb-12 space-y-4 rounded-3xl border border-white/5 bg-white/5 p-6 shadow-[0_30px_120px_rgba(59,7,100,0.25)] backdrop-blur-2xl"
       >
         <header className="flex flex-wrap items-center justify-between gap-2">
           <div>
@@ -64,7 +64,7 @@ export function GameProfile() {
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.1, margin: "-100px 0px" }}
         className="mt-12 grid gap-6 rounded-3xl border border-white/5 bg-white/5 p-6 text-white shadow-[0_30px_120px_rgba(59,7,100,0.25)] backdrop-blur-2xl md:grid-cols-[1.2fr_0.8fr]"
       >
         <div className="space-y-4">
