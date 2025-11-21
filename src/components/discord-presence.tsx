@@ -9,6 +9,12 @@ import { STATUS_CONFIG, getAvatarUrl } from "@/lib/discord-utils";
 import { SpotifyWidget } from "./spotify-widget";
 import { ActivityCard } from "./activity-card";
 
+const NITRO_BADGE = {
+  1: { label: "Nitro Classic", gradient: "from-pink-500/70 to-purple-500/70" },
+  2: { label: "Nitro", gradient: "from-purple-500/70 to-indigo-500/70" },
+  3: { label: "Nitro Basic", gradient: "from-fuchsia-500/70 to-cyan-500/70" },
+} as const;
+
 export function DiscordPresence() {
   const [presence, setPresence] = useState<LanyardData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -103,6 +109,10 @@ export function DiscordPresence() {
     [presence],
   );
 
+  const nitroInfo = presence?.discord_user.premium_type
+    ? NITRO_BADGE[presence.discord_user.premium_type as 1 | 2 | 3]
+    : undefined;
+
   if (isLoading) {
     return <LoadingSkeleton />;
   }
@@ -159,6 +169,14 @@ export function DiscordPresence() {
             <span className={`inline-block h-2 w-2 rounded-full ${statusConfig.color}`} />
             {statusConfig.label}
           </div>
+          {nitroInfo && (
+            <div
+              className={`mt-2 inline-flex items-center gap-1 rounded-full border border-white/10 bg-gradient-to-r ${nitroInfo.gradient} px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.3em]`}
+            >
+              <span>⭐</span>
+              <span>{nitroInfo.label}</span>
+            </div>
+          )}
         </div>
       </div>
 

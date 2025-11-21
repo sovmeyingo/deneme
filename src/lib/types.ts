@@ -7,6 +7,7 @@ export interface LanyardData {
     discriminator: string;
     global_name: string;
     display_name: string;
+    premium_type?: 0 | 1 | 2 | 3;
     collectibles?: {
       nameplate?: {
         label: string;

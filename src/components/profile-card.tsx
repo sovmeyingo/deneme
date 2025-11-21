@@ -106,11 +106,9 @@ export function ProfileCard({ profile }: ProfileCardProps) {
       <div className="grid gap-6 rounded-3xl border border-white/10 bg-black/20 p-6 sm:grid-cols-3">
         {profile.stats.map((stat) => (
           <div key={`${stat.label}-${stat.value}`} className="text-center sm:text-left">
-            <p className="text-xl font-semibold text-white">{stat.value}</p>
+            <p className="text-2xl font-semibold text-white">{stat.value}</p>
             {stat.label && (
-              <p className="text-sm uppercase tracking-[0.35em] text-zinc-500">
-                {stat.label}
-              </p>
+              <p className="text-sm font-medium text-white/70">{stat.label}</p>
             )}
           </div>
         ))}
@@ -120,12 +118,16 @@ export function ProfileCard({ profile }: ProfileCardProps) {
         <div className="flex flex-col gap-3 md:flex-row">
           <a
             href={profile.ctas.primary.href}
+            target="_blank"
+            rel="noreferrer noopener"
             className="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-zinc-200"
           >
             {profile.ctas.primary.label}
           </a>
           <a
             href={profile.ctas.secondary.href}
+            target="_blank"
+            rel="noreferrer noopener"
             className="inline-flex items-center justify-center rounded-2xl border border-white/20 px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:border-white/40"
           >
             {profile.ctas.secondary.label}

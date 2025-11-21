@@ -57,18 +57,18 @@ export const profileData = {
       },
     ] as Highlight[],
     stats: [
-      { label: "", value: "89000 saat Fortnite" },
-      { label: "", value: "10 Saat oyun oynamak" },
-      { label: "", value: "%100 full-stack Last of Us fanı" },
+      { label: "Fortnite", value: "89000h" },
+      { label: "Oyun oynamak", value: "Günde 10h" },
+      { label: "Full-stack Last of Us fanı", value: "%100" },
     ] as SpotlightStat[],
     ctas: {
       primary: {
-        label: "Direkt İletişim",
-        href: "mailto:hey@jva.studio",
+        label: "Tıkla",
+        href: "https://x.com/VioraziStore/status/1978940298156757328/photo/1",
       },
       secondary: {
-        label: "Kısa Demo İzle",
-        href: "https://cal.com/",
+        label: "Supriz",
+        href: "https://x.com/i/status/1980043690375589917",
       },
     },
   },
