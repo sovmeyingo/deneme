@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AudioProvider } from "@/contexts/AudioContext";
 import { MusicToggle } from "@/components/music-toggle";
+import { IntroOverlay } from "@/components/intro-overlay";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,6 +58,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AudioProvider>
+          <IntroOverlay />
           {children}
           <MusicToggle />
         </AudioProvider>
