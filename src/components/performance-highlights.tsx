@@ -1,13 +1,13 @@
 "use client";
 
 import type { PerformanceCollection } from "@/data/profile";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 type PerformanceHighlightsProps = {
   items: PerformanceCollection;
 };
 
-const container = {
+const container: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -16,9 +16,16 @@ const container = {
   },
 };
 
-const card = {
+const card: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
 };
 
 export function PerformanceHighlights({ items }: PerformanceHighlightsProps) {
