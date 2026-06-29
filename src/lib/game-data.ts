@@ -1,0 +1,103 @@
+import type { Game } from "./types";
+
+export const FAVORITE_GAMES: Game[] = [
+  {
+    id: "tlou-1",
+    title: "The Last of Us Part I",
+    subtitle: "Remake",
+    coverImage: "/assets/games/covers/last-of-us-part-1.jpg",
+    category: "favorite",
+    playTime: "24 saat",
+    tags: ["Aksiyon", "Macera", "Survival"],
+  },
+  {
+    id: "tlou-2",
+    title: "The Last of Us Part II",
+    coverImage: "/assets/games/covers/last-of-us-part-2.jpg",
+    category: "favorite",
+    playTime: "35 saat",
+    tags: ["Aksiyon", "Macera", "Hikaye"],
+  },
+  {
+    id: "sh-2",
+    title: "Silent Hill 2",
+    subtitle: "Remake",
+    coverImage: "/assets/games/covers/silent-hill-2.jpg",
+    category: "favorite",
+    playTime: "12 saat",
+    tags: ["Korku", "Psikolojik", "Survival"],
+  },
+  {
+    id: "sh-f",
+    title: "Silent Hill f",
+    coverImage: "/assets/games/covers/silent-hill-f.jpg",
+    category: "favorite",
+    playTime: "Yakında",
+    tags: ["Korku", "Survival"],
+  },
+  {
+    id: "cyberpunk",
+    title: "Cyberpunk 2077",
+    subtitle: "Ultimate Edition",
+    coverImage: "/assets/games/covers/cyberpunk-2077.jpg",
+    category: "favorite",
+    playTime: "156 saat",
+    tags: ["RPG", "Aksiyon", "Açık Dünya"],
+  },
+  {
+    id: "fc-25",
+    title: "EA SPORTS FC 25",
+    coverImage: "/assets/games/covers/fc-25.jpg",
+    category: "favorite",
+    playTime: "89 saat",
+    tags: ["Spor", "Futbol", "Multiplayer"],
+  },
+  {
+    id: "uncharted",
+    title: "Uncharted: Legacy of Thieves Collection",
+    coverImage: "/assets/games/covers/uncharted.jpg",
+    category: "favorite",
+    playTime: "42 saat",
+    tags: ["Aksiyon", "Macera", "Platformer"],
+  },
+];
+
+export const ROTATION_GAMES: Game[] = [
+  {
+    id: "fortnite",
+    title: "Fortnite",
+    coverImage: "/assets/games/covers/fortnite.jpg",
+    category: "rotation",
+    playTime: "234 saat",
+    lastPlayed: "2 saat önce",
+    tags: ["Battle Royale", "Aksiyon", "Ücretsiz"],
+  },
+  {
+    id: "valorant",
+    title: "Valorant",
+    coverImage: "/assets/games/covers/valorant.jpg",
+    category: "rotation",
+    playTime: "178 saat",
+    lastPlayed: "5 saat önce",
+    tags: ["FPS", "Taktik", "Ücretsiz"],
+  },
+  {
+    id: "rematch",
+    title: "Rematch",
+    coverImage: "/assets/games/covers/rematch.jpg",
+    category: "rotation",
+    playTime: "45 saat",
+    lastPlayed: "1 gün önce",
+    tags: ["Multiplayer", "Yarışma"],
+  },
+  {
+    id: "cod-bo6",
+    title: "Call of Duty: Black Ops 6",
+    coverImage: "/assets/games/covers/call-of-duty-black-ops-6.jpg",
+    category: "rotation",
+    playTime: "67 saat",
+    lastPlayed: "3 saat önce",
+    tags: ["FPS", "Aksiyon", "Multiplayer"],
+  },
+];
+

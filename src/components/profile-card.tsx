@@ -1,0 +1,146 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { motion, type Variants } from "framer-motion";
+import type { ProfileContent } from "@/data/profile";
+import { cn } from "@/lib/utils";
+
+type ProfileCardProps = {
+  profile: ProfileContent;
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
+};
+
+export function ProfileCard({ profile }: ProfileCardProps) {
+  const [istanbulTime, setIstanbulTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const formatter = new Intl.DateTimeFormat("tr-TR", {
+        timeZone: "Europe/Istanbul",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+      setIstanbulTime(formatter.format(new Date()));
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+  return (
+    <motion.section
+      initial="hidden"
+      animate="visible"
+      variants={cardVariants}
+      className="relative flex flex-col gap-8 overflow-hidden rounded-[28px] border border-white/5 bg-white/5 p-8 backdrop-blur-2xl md:p-10"
+    >
+      <div
+        className={cn(
+          "relative overflow-hidden rounded-[26px] border border-white/10 bg-black/40 px-6 py-8 md:px-8 md:py-10",
+        )}
+      >
+        {profile.banner ? (
+          <>
+            <Image
+              src={profile.banner.src}
+              alt={profile.banner.alt}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority={false}
+              className="absolute inset-0 h-full w-full object-cover blur-[2px] scale-[1.04] opacity-70"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/15 via-[#020108]/45 to-[#020108]/90" />
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/70" />
+        )}
+        <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:gap-8">
+          <div className="relative h-32 w-32 shrink-0 rounded-full border-4 border-purple-500/20 bg-black/40 p-1 md:h-36 md:w-36 transition-all duration-500 hover:border-purple-500/40 hover:scale-105">
+            <div className="relative h-full w-full overflow-hidden rounded-full ring-2 ring-white/10">
+              <Image
+                src={profile.avatar}
+                alt={profile.role}
+                fill
+                priority
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </div>
+          <div className="space-y-2 text-balance">
+            <p className="text-sm font-medium uppercase tracking-[0.35em] text-zinc-200 tracking-custom">
+              {profile.location}
+            </p>
+            <h1 className="text-4xl font-semibold text-white md:text-5xl">{profile.name}</h1>
+            <p className="text-lg text-zinc-200">{profile.role}</p>
+            <p className="inline-flex items-center gap-2 text-sm font-medium text-emerald-300">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              {istanbulTime ? `İstanbul: ${istanbulTime}` : "İstanbul yükleniyor..."}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        {profile.highlights.map((highlight) => (
+          <div
+            key={highlight.label}
+            className="rounded-2xl border border-white/10 bg-black/30 p-4 text-sm text-zinc-200"
+          >
+            <p className="text-xs uppercase tracking-[0.35em] text-zinc-500">
+              {highlight.label}
+            </p>
+            <p className="mt-2 text-base text-zinc-100">{highlight.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 rounded-3xl border border-white/10 bg-black/20 p-6 sm:grid-cols-3">
+        {profile.stats.map((stat) => (
+          <div key={`${stat.label}-${stat.value}`} className="text-center sm:text-left">
+            <p className="text-2xl font-semibold text-white">{stat.value}</p>
+            {stat.label && (
+              <p className="text-sm font-medium text-white/70">{stat.label}</p>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {profile.ctas && (
+        <div className="flex flex-col gap-3 md:flex-row">
+          <a
+            href={profile.ctas.primary.href}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-zinc-200"
+          >
+            {profile.ctas.primary.label}
+          </a>
+          <a
+            href={profile.ctas.secondary.href}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center justify-center rounded-2xl border border-white/20 px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:border-white/40"
+          >
+            {profile.ctas.secondary.label}
+          </a>
+        </div>
+      )}
+    </motion.section>
+  );
+}
+
