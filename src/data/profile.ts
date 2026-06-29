@@ -32,17 +32,18 @@ export type SocialLink = {
 export const profileData = {
   hero: {
     badge: "Oyun oynayan rastgele birisi",
-    headline: "Jva",
-    subline: "Bir bakıma Jva",
-    summary: "Sayfama hoş geldin",
+    headline: "Hakkımda Alanına Hoş Geldiniz",
+    subline: "Sovmey — Gamer & Artist",
+    summary: "Genelde Sovmey",
+    about: "Intel i7-12700F • RTX 4060 • 16GB RAM • Logitech G Pro X Superlight • SteelSeries Apex Pro TKL",
   },
   profile: {
-    avatar: "/media/avatar.jpg",
+    avatar: "/media/avatar.png",
     banner: {
-      src: "/media/profile-banner.jpg",
+      src: "/media/profile-banner.png",
       alt: "Yumuşak gradientli profil banner arka planı",
     },
-    name: "Jva",
+    name: "Sovmey",
     role: "Full-stack oyuncu",
     location: "Antartika, Kutuplar",
     availability: "",
@@ -64,11 +65,11 @@ export const profileData = {
     ctas: {
       primary: {
         label: "Tıkla",
-        href: "https://x.com/VioraziStore/status/1978940298156757328/photo/1",
+        href: "https://x.com/VioraziStore",
       },
       secondary: {
-        label: "Supriz",
-        href: "https://x.com/i/status/1980043690375589917",
+        label: "Sürpriz",
+        href: "https://x.com/VioraziStore/status/2031941884680036402",
       },
     },
   },
@@ -105,8 +106,8 @@ export const profileData = {
     {
       platform: "instagram",
       label: "Instagram",
-      handle: "qiironth",
-      url: "https://instagram.com/qiironth",
+      handle: "qiironh",
+      url: "https://www.instagram.com/qiironh?igsh=ZWUxc2E3MmI5ZGl2",
       accent: "#f43f5e",
     },
     {

@@ -1,46 +1,47 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { AudioProvider } from "@/contexts/AudioContext";
 import { MusicToggle } from "@/components/music-toggle";
+import { IntroOverlay } from "@/components/intro-overlay";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jva.studio"),
-  title: "Jva — Kişisel Profil",
+  title: "Sovmey Hakkında",
   description:
     "Card.co ve guns.lol esintileriyle hazırlanmış, videolu modern kişisel profil kartı.",
   openGraph: {
-    title: "Jva — Kişisel Profil",
+    title: "Sovmey Hakkında",
     description:
       "Videolu hero, Framer Motion animasyonlar ve tip güvenli içerikle tek sayfa profil deneyimi.",
     url: "https://jva.studio",
     type: "website",
     images: [
       {
-        url: "/media/avatar.svg",
+        url: "/media/avatar.png",
         width: 1200,
         height: 630,
-        alt: "Jva Profil Önizlemesi",
+        alt: "Sovmey Profil Önizlemesi",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@jva",
-    title: "Jva — Kişisel Profil",
+    creator: "@sovmey",
+    title: "Sovmey Hakkında",
     description:
       "Video arkaplanı ve performans optimizasyonlarıyla tasarlanmış kişisel link hub.",
-    images: ["/media/avatar.svg"],
+    images: ["/media/avatar.png"],
   },
 };
 
@@ -55,8 +56,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${outfit.variable} ${spaceGrotesk.variable} antialiased`}>
         <AudioProvider>
+          <IntroOverlay />
           {children}
           <MusicToggle />
         </AudioProvider>
@@ -64,3 +66,4 @@ export default function RootLayout({
     </html>
   );
 }
+

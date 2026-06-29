@@ -57,33 +57,39 @@ export function ProfileCard({ profile }: ProfileCardProps) {
               src={profile.banner.src}
               alt={profile.banner.alt}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority={false}
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover blur-[2px] scale-[1.04] opacity-70"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-black/55 to-black/80" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/15 via-[#020108]/45 to-[#020108]/90" />
           </>
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/70" />
         )}
         <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:gap-8">
-          <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-3xl border border-white/20 bg-black/50 md:h-36 md:w-36">
-            <Image
-              src={profile.avatar}
-              alt={profile.role}
-              width={160}
-              height={160}
-              priority
-              className="h-full w-full rounded-2xl object-cover"
-            />
+          <div className="relative h-32 w-32 shrink-0 rounded-full border-4 border-purple-500/20 bg-black/40 p-1 md:h-36 md:w-36 transition-all duration-500 hover:border-purple-500/40 hover:scale-105">
+            <div className="relative h-full w-full overflow-hidden rounded-full ring-2 ring-white/10">
+              <Image
+                src={profile.avatar}
+                alt={profile.role}
+                fill
+                priority
+                className="h-full w-full object-cover"
+              />
+            </div>
           </div>
           <div className="space-y-2 text-balance">
-            <p className="text-sm font-medium uppercase tracking-[0.35em] text-zinc-200">
+            <p className="text-sm font-medium uppercase tracking-[0.35em] text-zinc-200 tracking-custom">
               {profile.location}
             </p>
             <h1 className="text-4xl font-semibold text-white md:text-5xl">{profile.name}</h1>
             <p className="text-lg text-zinc-200">{profile.role}</p>
-            <p className="text-sm font-medium text-emerald-300">
-              {istanbulTime ? `İstanbul saati ${istanbulTime}` : "İstanbul saati yükleniyor..."}
+            <p className="inline-flex items-center gap-2 text-sm font-medium text-emerald-300">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              {istanbulTime ? `İstanbul: ${istanbulTime}` : "İstanbul yükleniyor..."}
             </p>
           </div>
         </div>

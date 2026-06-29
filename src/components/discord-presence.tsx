@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { Monitor, Smartphone, Globe, Gamepad2, Sparkles } from "lucide-react";
 import { DISCORD_CONFIG } from "@/lib/constants";
 import type { LanyardData, LanyardResponse } from "@/lib/types";
 import { STATUS_CONFIG, getAvatarUrl } from "@/lib/discord-utils";
@@ -102,10 +103,10 @@ export function DiscordPresence() {
 
   const activePlatforms = useMemo(
     () => [
-      presence?.active_on_discord_desktop && { label: "Desktop", icon: "🖥️" },
-      presence?.active_on_discord_mobile && { label: "Mobile", icon: "📱" },
-      presence?.active_on_discord_web && { label: "Web", icon: "🌐" },
-    ].filter(Boolean) as Array<{ label: string; icon: string }>,
+      presence?.active_on_discord_desktop && { label: "Masaüstü", icon: Monitor },
+      presence?.active_on_discord_mobile && { label: "Mobil", icon: Smartphone },
+      presence?.active_on_discord_web && { label: "Web", icon: Globe },
+    ].filter(Boolean) as Array<{ label: string; icon: React.ComponentType<any> }>,
     [presence],
   );
 
@@ -138,13 +139,13 @@ export function DiscordPresence() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="w-full rounded-3xl border border-white/15 bg-white/5 p-5 text-white shadow-[0_20px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl"
+      className="w-full rounded-3xl border border-white/10 bg-black/30 p-5 text-white shadow-[0_24px_80px_rgba(0,0,0,0.4)] backdrop-blur-xl hover:border-white/15 transition-all duration-300"
     >
-      <div className="mb-4 flex items-start gap-3">
+      <div className="mb-4 flex items-start gap-4">
         <div className="relative">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="relative h-16 w-16 overflow-hidden rounded-2xl ring-2 ring-white/10"
+            className="relative h-16 w-16 overflow-hidden rounded-2xl ring-2 ring-white/10 bg-zinc-900"
           >
             <Image
               src={avatarUrl}
@@ -161,19 +162,24 @@ export function DiscordPresence() {
             }`}
           />
         </div>
-        <div className="flex-1">
-          <p className="text-xs uppercase tracking-[0.35em] text-white/60">Discord</p>
-          <h3 className="text-xl font-semibold">{presence.discord_user.display_name}</h3>
-          <p className="text-xs text-white/70">@{presence.discord_user.username}</p>
-          <div className="mt-2 flex items-center gap-2 text-[11px] text-white/70">
-            <span className={`inline-block h-2 w-2 rounded-full ${statusConfig.color}`} />
+        <div className="flex-1 min-w-0">
+          <p className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-bold tracking-custom">Discord</p>
+          <h3 className="text-xl font-bold truncate">{presence.discord_user.display_name}</h3>
+          <p className="text-xs text-white/40 font-medium tracking-custom">@{presence.discord_user.username}</p>
+          <div className="mt-2 flex items-center gap-1.5 text-[11px] text-white/60 font-semibold">
+            <span className="relative flex h-1.5 w-1.5">
+              {statusConfig.pulse && (
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${statusConfig.color} opacity-75`}></span>
+              )}
+              <span className={`relative inline-flex rounded-full h-1.5 w-1.5 ${statusConfig.color}`}></span>
+            </span>
             {statusConfig.label}
           </div>
           {nitroInfo && (
             <div
-              className={`mt-2 inline-flex items-center gap-1 rounded-full border border-white/10 bg-gradient-to-r ${nitroInfo.gradient} px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.3em]`}
+              className={`mt-2.5 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-gradient-to-r ${nitroInfo.gradient} px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.2em] tracking-custom`}
             >
-              <span>⭐</span>
+              <Sparkles className="h-3 w-3" />
               <span>{nitroInfo.label}</span>
             </div>
           )}
@@ -186,7 +192,10 @@ export function DiscordPresence() {
             <PlatformBadge key={platform.label} icon={platform.icon} label={platform.label} />
           ))
         ) : (
-          <PlatformBadge icon="💤" label="Pasif" />
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/5 bg-white/5 px-3 py-1 text-xs text-white/50 backdrop-blur-md">
+            <span className="h-1.5 w-1.5 rounded-full bg-zinc-500 animate-pulse" />
+            <span className="tracking-wide">Çevrimdışı / Pasif</span>
+          </span>
         )}
       </div>
 
@@ -201,7 +210,7 @@ export function DiscordPresence() {
       </AnimatePresence>
 
       {!spotifyActive && !activity && (
-        <div className="py-4 text-center text-sm text-white/50">
+        <div className="py-4 text-center text-sm text-white/40 font-medium italic">
           Şu anda paylaşılan bir aktivite yok
         </div>
       )}
@@ -209,11 +218,11 @@ export function DiscordPresence() {
   );
 }
 
-function PlatformBadge({ icon, label }: { icon: string; label: string }) {
+function PlatformBadge({ icon: Icon, label }: { icon: React.ComponentType<any>; label: string }) {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/10 px-3 py-1 text-xs text-white/70">
-      <span>{icon}</span>
-      {label}
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/5 bg-white/5 px-3 py-1 text-xs text-white/70 backdrop-blur-md">
+      <Icon className="h-3.5 w-3.5" />
+      <span className="tracking-wide">{label}</span>
     </span>
   );
 }

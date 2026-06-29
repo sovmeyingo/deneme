@@ -21,19 +21,8 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const fadeInRef = useRef<() => void>(() => {});
   const isPlayingRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolumeState] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem(AUDIO_CONFIG.VOLUME_KEY);
-      if (saved) {
-        const parsed = Number(saved);
-        if (!Number.isNaN(parsed)) {
-          return Math.max(0, Math.min(1, parsed));
-        }
-      }
-    }
-    return AUDIO_CONFIG.DEFAULT_VOLUME;
-  });
-  const initialVolumeRef = useRef(volume);
+  const [volume, setVolumeState] = useState<number>(AUDIO_CONFIG.DEFAULT_VOLUME);
+  const initialVolumeRef = useRef(AUDIO_CONFIG.DEFAULT_VOLUME);
 
   const clearFadeInterval = useCallback(() => {
     if (fadeIntervalRef.current) {
@@ -106,28 +95,10 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     audio.volume = initialVolumeRef.current;
     audioRef.current = audio;
 
-    const cleanupListeners = () => {
-      document.removeEventListener("click", handleFirstInteraction);
-      document.removeEventListener("keydown", handleFirstInteraction);
-      document.removeEventListener("touchstart", handleFirstInteraction);
-    };
-
-    const handleFirstInteraction = () => {
-      if (!isPlayingRef.current) {
-        fadeInRef.current();
-      }
-      cleanupListeners();
-    };
-
-    document.addEventListener("click", handleFirstInteraction);
-    document.addEventListener("keydown", handleFirstInteraction);
-    document.addEventListener("touchstart", handleFirstInteraction);
-
     return () => {
       audio.pause();
       audio.src = "";
       audioRef.current = null;
-      cleanupListeners();
     };
   }, []); 
 

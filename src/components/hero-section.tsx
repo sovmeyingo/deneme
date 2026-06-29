@@ -58,30 +58,43 @@ export function HeroSection({ hero, profile, socials }: HeroSectionProps) {
           </motion.div>
 
           <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-            <div className="min-w-0">
-              <ProfileCard profile={profile} />
-            </div>
             <div className="flex flex-col gap-6 min-w-0">
+              <ProfileCard profile={profile} />
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{
                   duration: 0.6,
-                  delay: 0.4,
+                  delay: 0.25,
                   ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
                 }}
                 className="rounded-3xl border border-white/10 bg-black/30 p-6 backdrop-blur-xl"
               >
-                <p className="text-sm uppercase tracking-[0.35em] text-white/60">Belirsiz alan</p>
-                <p className="mt-3 text-xl text-white/90">
-                  Burasını neden yaptım bende bilmiyorum
+                <p className="text-xs uppercase tracking-[0.35em] text-white/60 tracking-custom">Sistem & Donanım</p>
+                <p className="mt-3 text-base leading-relaxed text-white/90">
+                  {hero.about}
                 </p>
               </motion.div>
+            </div>
+            <div className="flex flex-col gap-6 min-w-0">
               <SocialLinks links={socials} />
               <DiscordPresence />
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll Down Indicator */}
+      <div className="mt-10 flex flex-col items-center gap-2 opacity-50 hover:opacity-90 transition-opacity duration-300">
+        <span className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-medium tracking-custom">Aşağı Kaydır</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <svg viewBox="0 0 24 24" className="h-4 w-4 text-white/60" fill="none" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </motion.div>
       </div>
     </section>
   );
